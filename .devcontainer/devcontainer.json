@@ -1,0 +1,31 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal",
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "customizations": {
+    "codespaces": {
+      "skipOryx": true,
+      "experimentalGitHooks": ".githooks",
+      "openFiles": [
+        "server.js",
+        "script.js"
+      ]
+    },
+    "vscode": {
+      "settings": {
+        "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+        "github.copilot.nextEditSuggestions.enabled": false
+      }
+    }
+  },
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    }
+  },
+  "forwardPorts": [
+    3000
+  ]
+}
