@@ -1,9 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const rows = 50;
-const cols = 50;
-const cellSize = canvas.width / cols;
+let rows, cols, cellSize; // Declare rows, cols, and cellSize globally
 
 let grid = createGrid();
 let ageGrid = createAgeGrid(); // Ensure ageGrid is initialized separately
@@ -88,6 +86,21 @@ function update() {
     drawGrid();
     setTimeout(update, 500); // Update every 0.5 seconds
 }
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth * 0.9;
+    canvas.height = window.innerHeight * 0.9;
+    cellSize = 10; // Keep cells small with a fixed size
+    rows = Math.floor(canvas.height / cellSize);
+    cols = Math.floor(canvas.width / cellSize);
+    grid = createGrid(); // Reinitialize grid with random live cells
+    ageGrid = createAgeGrid();
+    drawGrid();
+}
+
+window.addEventListener('resize', resizeCanvas);
+
+resizeCanvas(); // Initial resize to set up the canvas
 
 drawGrid();
 update();
